@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Shouldly" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BuildingBlocks\Ordo.BuildingBlocks.Messaging.Abstractions\Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Contracts\Ordo.Contracts\Ordo.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\Inventory\Ordo.Inventory.Application\Ordo.Inventory.Application.csproj" />
+    <ProjectReference Include="..\..\src\Inventory\Ordo.Inventory.Domain\Ordo.Inventory.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

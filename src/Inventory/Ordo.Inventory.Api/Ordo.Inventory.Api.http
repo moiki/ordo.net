@@ -1,6 +1,11 @@
 @Ordo.Inventory.Api_HostAddress = http://localhost:5257
 
-GET {{Ordo.Inventory.Api_HostAddress}}/weatherforecast/
+### Health
+GET {{Ordo.Inventory.Api_HostAddress}}/health/live
 Accept: application/json
 
-###
+### Set stock (dev-only admin endpoint, no authentication in Phase 1)
+PUT {{Ordo.Inventory.Api_HostAddress}}/inventory/stock/22222222-2222-7222-8222-222222222222
+Content-Type: application/json
+
+{ "quantity": 10 }
