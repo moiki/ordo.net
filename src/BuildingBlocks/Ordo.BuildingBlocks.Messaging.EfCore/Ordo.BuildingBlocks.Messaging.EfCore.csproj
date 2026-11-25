@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ordo.BuildingBlocks.Messaging.Abstractions\Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

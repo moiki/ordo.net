@@ -1,0 +1,26 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/Ordo.BuildingBlocks.Messaging.Abstractions/Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
+    <Project Path="src/BuildingBlocks/Ordo.BuildingBlocks.Messaging.EfCore/Ordo.BuildingBlocks.Messaging.EfCore.csproj" />
+    <Project Path="src/BuildingBlocks/Ordo.BuildingBlocks.Messaging.RabbitMq/Ordo.BuildingBlocks.Messaging.RabbitMq.csproj" />
+  </Folder>
+  <Folder Name="/src/Contracts/">
+    <Project Path="src/Contracts/Ordo.Contracts/Ordo.Contracts.csproj" />
+  </Folder>
+  <Folder Name="/src/Inventory/">
+    <Project Path="src/Inventory/Ordo.Inventory.Api/Ordo.Inventory.Api.csproj" />
+    <Project Path="src/Inventory/Ordo.Inventory.Application/Ordo.Inventory.Application.csproj" />
+    <Project Path="src/Inventory/Ordo.Inventory.Domain/Ordo.Inventory.Domain.csproj" />
+    <Project Path="src/Inventory/Ordo.Inventory.Infrastructure/Ordo.Inventory.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Orders/">
+    <Project Path="src/Orders/Ordo.Orders.Api/Ordo.Orders.Api.csproj" />
+    <Project Path="src/Orders/Ordo.Orders.Application/Ordo.Orders.Application.csproj" />
+    <Project Path="src/Orders/Ordo.Orders.Domain/Ordo.Orders.Domain.csproj" />
+    <Project Path="src/Orders/Ordo.Orders.Infrastructure/Ordo.Orders.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Ordo.ArchitectureTests/Ordo.ArchitectureTests.csproj" />
+  </Folder>
+</Solution>

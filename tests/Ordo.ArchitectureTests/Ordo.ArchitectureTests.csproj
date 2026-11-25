@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="NetArchTest.Rules" />
+    <PackageReference Include="Shouldly" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Contracts\Ordo.Contracts\Ordo.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\BuildingBlocks\Ordo.BuildingBlocks.Messaging.Abstractions\Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\BuildingBlocks\Ordo.BuildingBlocks.Messaging.RabbitMq\Ordo.BuildingBlocks.Messaging.RabbitMq.csproj" />
+    <ProjectReference Include="..\..\src\BuildingBlocks\Ordo.BuildingBlocks.Messaging.EfCore\Ordo.BuildingBlocks.Messaging.EfCore.csproj" />
+    <ProjectReference Include="..\..\src\Orders\Ordo.Orders.Domain\Ordo.Orders.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Orders\Ordo.Orders.Application\Ordo.Orders.Application.csproj" />
+    <ProjectReference Include="..\..\src\Orders\Ordo.Orders.Infrastructure\Ordo.Orders.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Orders\Ordo.Orders.Api\Ordo.Orders.Api.csproj" />
+    <ProjectReference Include="..\..\src\Inventory\Ordo.Inventory.Domain\Ordo.Inventory.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Inventory\Ordo.Inventory.Application\Ordo.Inventory.Application.csproj" />
+    <ProjectReference Include="..\..\src\Inventory\Ordo.Inventory.Infrastructure\Ordo.Inventory.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Inventory\Ordo.Inventory.Api\Ordo.Inventory.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>

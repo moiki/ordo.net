@@ -1,0 +1,28 @@
+## Build
+[Bb]in/
+[Oo]bj/
+[Tt]est[Rr]esults/
+artifacts/
+*.user
+*.suo
+*.cache
+*.log
+
+## IDE
+.vs/
+.idea/
+.vscode/
+*.DotSettings.user
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Env / secrets
+.env
+.env.*
+*.local.json
+appsettings.*.local.json
+
+## Docker
+deploy/**/.env

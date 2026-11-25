@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ordo.Orders.Application\Ordo.Orders.Application.csproj" />
+    <ProjectReference Include="..\Ordo.Orders.Infrastructure\Ordo.Orders.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Contracts\Ordo.Contracts\Ordo.Contracts.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Ordo.BuildingBlocks.Messaging.Abstractions\Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Ordo.BuildingBlocks.Messaging.RabbitMq\Ordo.BuildingBlocks.Messaging.RabbitMq.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Ordo.BuildingBlocks.Messaging.EfCore\Ordo.BuildingBlocks.Messaging.EfCore.csproj" />
+  </ItemGroup>
+
+</Project>

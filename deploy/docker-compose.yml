@@ -1,0 +1,52 @@
+name: ordo
+
+services:
+  postgres:
+    image: postgres:16.4-alpine
+    container_name: ordo-postgres
+    environment:
+      POSTGRES_USER: ordo_dev
+      POSTGRES_PASSWORD: ordo_dev
+      POSTGRES_DB: ordo
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ordo_dev -d ordo"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - ordo_postgres_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3.13.7-management-alpine
+    container_name: ordo-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ordo_dev
+      RABBITMQ_DEFAULT_PASS: ordo_dev
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - ordo_rabbitmq_data:/var/lib/rabbitmq
+
+  mailpit:
+    image: axllent/mailpit:v1.21.8
+    container_name: ordo-mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    healthcheck:
+      test: ["CMD", "/mailpit", "readyz"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  ordo_postgres_data:
+  ordo_rabbitmq_data:

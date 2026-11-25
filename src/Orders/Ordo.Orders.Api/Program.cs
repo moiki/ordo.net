@@ -1,0 +1,8 @@
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+WebApplication app = builder.Build();
+
+app.MapGet("/health/live", () => Results.Ok(new { status = "Alive" }));
+app.MapGet("/health/ready", () => Results.Ok(new { status = "Ready" }));
+
+await app.RunAsync();

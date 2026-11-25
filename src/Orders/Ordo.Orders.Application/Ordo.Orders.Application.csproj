@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ordo.Orders.Domain\Ordo.Orders.Domain.csproj" />
+    <ProjectReference Include="..\..\Contracts\Ordo.Contracts\Ordo.Contracts.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Ordo.BuildingBlocks.Messaging.Abstractions\Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
