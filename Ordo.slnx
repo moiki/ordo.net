@@ -20,5 +20,6 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Ordo.ArchitectureTests/Ordo.ArchitectureTests.csproj" />
+    <Project Path="tests/Ordo.Messaging.Abstractions.Tests/Ordo.Messaging.Abstractions.Tests.csproj" />
   </Folder>
 </Solution>
