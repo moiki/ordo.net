@@ -2,7 +2,7 @@ name: ordo
 
 services:
   postgres:
-    image: postgres:16.4-alpine
+    image: postgres:16.16-alpine
     container_name: ordo-postgres
     environment:
       POSTGRES_USER: ordo_dev
@@ -19,7 +19,7 @@ services:
       - ordo_postgres_data:/var/lib/postgresql/data
 
   rabbitmq:
-    image: rabbitmq:3.13.7-management-alpine
+    image: rabbitmq:4.4.1-management-alpine
     container_name: ordo-rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: ordo_dev
@@ -36,7 +36,7 @@ services:
       - ordo_rabbitmq_data:/var/lib/rabbitmq
 
   mailpit:
-    image: axllent/mailpit:v1.21.8
+    image: axllent/mailpit:v1.34.0
     container_name: ordo-mailpit
     ports:
       - "1025:1025"

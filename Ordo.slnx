@@ -2,8 +2,6 @@
   <Folder Name="/src/" />
   <Folder Name="/src/BuildingBlocks/">
     <Project Path="src/BuildingBlocks/Ordo.BuildingBlocks.Messaging.Abstractions/Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
-    <Project Path="src/BuildingBlocks/Ordo.BuildingBlocks.Messaging.EfCore/Ordo.BuildingBlocks.Messaging.EfCore.csproj" />
-    <Project Path="src/BuildingBlocks/Ordo.BuildingBlocks.Messaging.RabbitMq/Ordo.BuildingBlocks.Messaging.RabbitMq.csproj" />
   </Folder>
   <Folder Name="/src/Contracts/">
     <Project Path="src/Contracts/Ordo.Contracts/Ordo.Contracts.csproj" />

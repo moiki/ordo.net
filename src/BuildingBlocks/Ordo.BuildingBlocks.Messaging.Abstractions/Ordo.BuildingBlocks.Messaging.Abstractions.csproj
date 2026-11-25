@@ -1,3 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\Ordo.Contracts\Ordo.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

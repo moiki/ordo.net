@@ -6,7 +6,7 @@ It is built as an **Event-Driven Architecture (EDA)** in **.NET** with **hexagon
 
 This is also a **learning project for a developer growing into a senior role**. Correctness, explicit trade-offs and understanding matter more than speed. Do not hide complexity behind libraries that the project has deliberately chosen to build by hand.
 
-> Read this file completely before every task. Detailed rules live in `docs/`. If a rule here conflicts with a doc, **this file wins**, and you must flag the conflict.
+> Read this file completely before every task. Detailed rules live in `docs/`. If a rule here conflicts with a doc, **this file wins**; the conflict must be reported and corrected in the same change.
 
 ## 1. Anti-hallucination protocol (highest priority)
 
@@ -78,18 +78,13 @@ ordo/
 ├── src/
 │   ├── BuildingBlocks/          # technical infrastructure only, NO business logic
 │   │   ├── Ordo.BuildingBlocks.Messaging.Abstractions/
-│   │   ├── Ordo.BuildingBlocks.Messaging.RabbitMq/
-│   │   ├── Ordo.BuildingBlocks.Messaging.EfCore/     # outbox + inbox
-│   │   └── Ordo.BuildingBlocks.Observability/        # later phase
+│   │   ├── Ordo.BuildingBlocks.Messaging.RabbitMq/    (Phase 1 — not yet created)
+│   │   └── Ordo.BuildingBlocks.Messaging.EfCore/      (Phase 2 — not yet created; outbox + inbox)
 │   ├── Contracts/
 │   │   └── Ordo.Contracts/      # integration events only
 │   ├── Orders/      (Ordo.Orders.Domain | .Application | .Infrastructure | .Api)
-│   ├── Inventory/   (same four projects)
-│   ├── Payments/    (same four projects)
-│   └── Notifications/ (same four projects)
+│   └── Inventory/   (same four projects)
 ├── tests/
-│   ├── Orders/      (Ordo.Orders.UnitTests, Ordo.Orders.IntegrationTests)
-│   ├── Inventory/ Payments/ Notifications/ (same pattern)
 │   └── Ordo.ArchitectureTests/
 ├── deploy/                      # docker-compose, broker config
 └── docs/                        # architecture, messaging, conventions, roadmap, adr/
@@ -101,6 +96,7 @@ Namespaces mirror project names: `Ordo.Orders.Domain`, `Ordo.Contracts`, `Ordo.B
 
 - **Domain** references nothing: no project references, no NuGet packages (BCL only).
 - **Application** references Domain, `Ordo.Contracts` and `Messaging.Abstractions` only. No EF Core, no RabbitMQ, no ASP.NET.
+- `BuildingBlocks.Messaging.Abstractions` may reference `Ordo.Contracts` only (it needs `IIntegrationEvent`); no packages and no other project references.
 - **Infrastructure** implements the ports defined in Application. It is the only place that knows EF Core, RabbitMQ, SMTP, etc.
 - **Api** is the composition root and the HTTP inbound adapter. No business logic.
 - **Services never reference each other.** They share only `Ordo.Contracts`. No shared domain code, no shared databases, no synchronous service-to-service HTTP calls.
@@ -135,3 +131,7 @@ Namespaces mirror project names: `Ordo.Orders.Domain`, `Ordo.Contracts`, `Ordo.B
 | `docs/messaging.md` | Touching events, RabbitMQ, outbox, inbox, retries, tracing |
 | `docs/conventions.md` | Writing code, adding packages, writing tests, writing ADRs |
 | `docs/adr/` | Before reversing or questioning an earlier decision |
+
+## 10. Documentation upkeep
+
+Every new project ships with a `README.md` using the template in `docs/conventions.md`. Any change to a project's responsibility, references or status updates its `README.md` in the same commit.

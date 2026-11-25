@@ -9,8 +9,6 @@ public sealed class ArchitectureRulesTests
 {
     private static readonly Assembly ContractsAssembly = typeof(Ordo.Contracts.IIntegrationEvent).Assembly;
     private static readonly Assembly MessagingAbstractionsAssembly = typeof(Ordo.BuildingBlocks.Messaging.Abstractions.IBrokerPublisher).Assembly;
-    private static readonly Assembly RabbitMqAssembly = typeof(Ordo.BuildingBlocks.Messaging.RabbitMq.RabbitMqBrokerPublisher).Assembly;
-    private static readonly Assembly EfCoreAssembly = typeof(Ordo.BuildingBlocks.Messaging.EfCore.OutboxMessage).Assembly;
     private static readonly Assembly OrdersDomainAssembly = typeof(Ordo.Orders.Domain.AssemblyMarker).Assembly;
     private static readonly Assembly OrdersApplicationAssembly = typeof(Ordo.Orders.Application.AssemblyMarker).Assembly;
     private static readonly Assembly OrdersInfrastructureAssembly = typeof(Ordo.Orders.Infrastructure.AssemblyMarker).Assembly;
@@ -91,8 +89,6 @@ public sealed class ArchitectureRulesTests
     {
         string[] domainTerms = ["Order", "Payment", "Inventory", "Notification", "Customer"];
         AssertNoForbiddenDependencies(MessagingAbstractionsAssembly, domainTerms);
-        AssertNoForbiddenDependencies(RabbitMqAssembly, domainTerms);
-        AssertNoForbiddenDependencies(EfCoreAssembly, domainTerms);
     }
 
     private static void AssertNoForbiddenDependencies(Assembly assembly, IEnumerable<string> forbiddenDependencies)

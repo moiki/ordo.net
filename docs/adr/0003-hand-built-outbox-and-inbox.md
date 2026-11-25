@@ -14,7 +14,7 @@ Alternatives considered:
 
 ## Decision
 
-Implement outbox and inbox manually in `Ordo.BuildingBlocks.Messaging.EfCore` during core phases. Phase 1 intentionally starts with direct publish to expose the dual-write problem; Phase 2 replaces it with outbox/inbox behavior without changing application contracts.
+Implement outbox and inbox manually during the core phases. `Ordo.BuildingBlocks.Messaging.EfCore` does not exist in Phase 0; it will be created in Phase 2. Phase 1 intentionally starts with direct publish to expose the dual-write problem; Phase 2 adds the outbox (same-transaction write, `SKIP LOCKED` relay, publisher confirms, attempts/dead state and retention) and the inbox (consumer deduplication) exactly as specified in [`docs/messaging.md`](../messaging.md) §§5–6, without changing application contracts.
 
 ## Consequences
 

@@ -1,7 +1,9 @@
+using Ordo.Contracts;
+
 namespace Ordo.BuildingBlocks.Messaging.Abstractions;
 
 public interface IIntegrationEventHandler<in TEvent>
-    where TEvent : class
+    where TEvent : IIntegrationEvent
 {
     Task HandleAsync(TEvent integrationEvent, CancellationToken cancellationToken);
 }
