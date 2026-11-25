@@ -17,7 +17,11 @@ public sealed record ConsumerSubscription(
             queueName,
             wireType,
             typeof(TEvent),
-            static (services, integrationEvent, cancellationToken) =>
-                services.GetRequiredService<IIntegrationEventHandler<TEvent>>()
-                    .HandleAsync((TEvent)integrationEvent, cancellationToken));
+            static async (services, integrationEvent, cancellationToken) =>
+            {
+                // Handlers and DbContexts are scoped; the host resolves from the root provider.
+                using IServiceScope scope = services.CreateScope();
+                await scope.ServiceProvider.GetRequiredService<IIntegrationEventHandler<TEvent>>()
+                    .HandleAsync((TEvent)integrationEvent, cancellationToken);
+            });
 }

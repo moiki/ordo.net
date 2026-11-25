@@ -5,6 +5,15 @@
     <ProjectReference Include="..\Ordo.Orders.Infrastructure\Ordo.Orders.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Contracts\Ordo.Contracts\Ordo.Contracts.csproj" />
     <ProjectReference Include="..\..\BuildingBlocks\Ordo.BuildingBlocks.Messaging.Abstractions\Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Ordo.BuildingBlocks.Messaging.RabbitMq\Ordo.BuildingBlocks.Messaging.RabbitMq.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,9 @@ namespace Ordo.Orders.Domain;
 
 public sealed class Order : AggregateRoot
 {
-    private readonly OrderLine[] _lines;
+    // List<T> (not an array) because EF Core collection navigations must support Add/Remove.
+    // The public surface stays an IReadOnlyList<T>, so the domain contract is unchanged.
+    private readonly List<OrderLine> _lines;
 
     private Order(
         Guid id,
@@ -11,7 +13,7 @@ public sealed class Order : AggregateRoot
         string currency,
         DateTimeOffset placedAtUtc)
     {
-        _lines = lines.ToArray();
+        _lines = lines.ToList();
         Id = id;
         CustomerId = customerId;
         PlacedAtUtc = placedAtUtc;
@@ -20,10 +22,29 @@ public sealed class Order : AggregateRoot
         Raise(new OrderPlaced(
             id,
             customerId,
-            Array.AsReadOnly(_lines),
+            _lines.AsReadOnly(),
             Total,
             Guid.CreateVersion7(),
             placedAtUtc));
+    }
+
+    // EF Core materialization constructor. Persisted columns map to these parameters;
+    // domain events are not re-raised when loading and owned lines are set via their backing field.
+    private Order(
+        Guid id,
+        Guid customerId,
+        DateTimeOffset placedAtUtc,
+        OrderStatus status,
+        string? cancellationReason)
+    {
+        Id = id;
+        CustomerId = customerId;
+        PlacedAtUtc = placedAtUtc;
+        Status = status;
+        CancellationReason = cancellationReason;
+        // EF Core sets Total (complex property) and _lines (owned collection) via backing fields.
+        Total = null!;
+        _lines = [];
     }
 
     public Guid Id { get; }
@@ -38,7 +59,7 @@ public sealed class Order : AggregateRoot
 
     public Money Total { get; }
 
-    public IReadOnlyList<OrderLine> Lines => Array.AsReadOnly(_lines);
+    public IReadOnlyList<OrderLine> Lines => _lines.AsReadOnly();
 
     public static Order Place(
         Guid id,
@@ -60,6 +81,12 @@ public sealed class Order : AggregateRoot
         if (lines.Count == 0)
         {
             throw new ArgumentException("An order needs at least one line.", nameof(lines));
+        }
+
+        // One line per product keeps the aggregate aligned with the order_lines primary key.
+        if (lines.Select(line => line.ProductId).Distinct().Count() != lines.Count)
+        {
+            throw new ArgumentException("An order cannot contain duplicate product lines.", nameof(lines));
         }
 
         return new Order(id, customerId, lines, currency, placedAtUtc);

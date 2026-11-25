@@ -18,6 +18,7 @@ public static class RabbitMqMessagingExtensions
         services.AddSingleton<RabbitMqConnection>();
         services.AddSingleton<IBrokerPublisher, RabbitMqBrokerPublisher>();
         services.AddSingleton<RabbitMqBrokerPublisher>();
+        services.AddSingleton<IIntegrationEventPublisher, DirectIntegrationEventPublisher>();
         services.AddHostedService<RabbitMqConsumerHost>();
         return services;
     }

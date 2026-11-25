@@ -102,6 +102,28 @@ public sealed class RabbitMqAdapterTests : IAsyncLifetime
     }
 
     [Fact]
+    public async Task Consumer_should_start_when_the_exchange_does_not_exist_yet()
+    {
+        string queue = NewQueue("cold-start");
+        RecordingHandler.Reset();
+        CapturingLogger<RabbitMqConsumerHost> logger = new();
+        await using ServiceProvider services = BuildServices(
+            ConsumerSubscription.For<TestEvent>(queue, WireType),
+            logger,
+            new RecordingHandler());
+        using RabbitMqConsumerHost host = CreateHost(services, logger);
+
+        await host.StartAsync(CancellationToken.None);
+        await WaitForConsumerAsync(queue);
+        TestEvent published = NewEvent();
+        await PublishAsync(Envelope(published), MessagingJson.Serialize(published));
+        TestEvent handled = await RecordingHandler.Completed.Task.WaitAsync(TimeSpan.FromSeconds(20));
+
+        handled.EventId.ShouldBe(published.EventId);
+        await host.StopAsync(CancellationToken.None);
+    }
+
+    [Fact]
     public async Task Permanent_failure_should_nack_without_requeue()
     {
         string queue = NewQueue("permanent");
@@ -256,6 +278,33 @@ public sealed class RabbitMqAdapterTests : IAsyncLifetime
 
     private RabbitMqConsumerHost CreateHost(IServiceProvider services, ILogger<RabbitMqConsumerHost> logger) =>
         new(_connection, _options, [services.GetRequiredService<ConsumerSubscription>()], services, logger);
+
+    // StartAsync returns before the hosted consumer attaches; wait for its consumer count.
+    // A passive declare is not reliable here: RabbitMQ.Client 7.x does not see quorum queues
+    // created on another channel when the passive declare omits x-queue-type.
+    private async Task WaitForConsumerAsync(string queue)
+    {
+        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(20));
+        await using IChannel channel = await NewChannelAsync();
+        while (true)
+        {
+            QueueDeclareOk declared = await channel.QueueDeclareAsync(
+                queue: queue,
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: new Dictionary<string, object?> { ["x-queue-type"] = "quorum" },
+                passive: false,
+                noWait: false,
+                cancellationToken: timeout.Token);
+            if (declared.ConsumerCount > 0)
+            {
+                return;
+            }
+
+            await Task.Delay(25, timeout.Token);
+        }
+    }
 
     private static async Task WaitForLogAsync(CapturingLogger<RabbitMqConsumerHost> logger, string text)
     {

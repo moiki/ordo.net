@@ -24,6 +24,8 @@ public sealed class RabbitMqConsumerHost(
     {
         await using IChannel channel = await connection.CreateChannelAsync(ConsumeChannelOptions, stoppingToken);
 
+        // The exchange may not exist yet when a service starts before its first publisher.
+        await RabbitMqTopology.DeclareExchangeAsync(channel, options.ExchangeName, stoppingToken);
         await RabbitMqTopology.DeclareConsumerQueuesAsync(channel, options.ExchangeName, subscriptions, stoppingToken);
         await channel.BasicQosAsync(0, options.PrefetchCount, global: false, stoppingToken);
 

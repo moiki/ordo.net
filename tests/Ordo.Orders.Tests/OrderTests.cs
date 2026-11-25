@@ -151,6 +151,22 @@ public sealed class OrderTests
             OccurredAtUtc));
     }
 
+    [Fact]
+    public void Place_should_reject_duplicate_product_lines()
+    {
+        var productId = Guid.CreateVersion7();
+
+        Should.Throw<ArgumentException>(() => Order.Place(
+            Guid.CreateVersion7(),
+            Guid.CreateVersion7(),
+            [
+                new OrderLine(productId, 1, 100),
+                new OrderLine(productId, 2, 100)
+            ],
+            "USD",
+            OccurredAtUtc));
+    }
+
     private static Order NewOrder() => Order.Place(
         Guid.CreateVersion7(),
         Guid.CreateVersion7(),
