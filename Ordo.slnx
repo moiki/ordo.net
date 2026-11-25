@@ -2,6 +2,7 @@
   <Folder Name="/src/" />
   <Folder Name="/src/BuildingBlocks/">
     <Project Path="src/BuildingBlocks/Ordo.BuildingBlocks.Messaging.Abstractions/Ordo.BuildingBlocks.Messaging.Abstractions.csproj" />
+    <Project Path="src/BuildingBlocks/Ordo.BuildingBlocks.Messaging.RabbitMq/Ordo.BuildingBlocks.Messaging.RabbitMq.csproj" />
   </Folder>
   <Folder Name="/src/Contracts/">
     <Project Path="src/Contracts/Ordo.Contracts/Ordo.Contracts.csproj" />
@@ -21,5 +22,6 @@
   <Folder Name="/tests/">
     <Project Path="tests/Ordo.ArchitectureTests/Ordo.ArchitectureTests.csproj" />
     <Project Path="tests/Ordo.Messaging.Abstractions.Tests/Ordo.Messaging.Abstractions.Tests.csproj" />
+    <Project Path="tests/Ordo.Messaging.RabbitMq.Tests/Ordo.Messaging.RabbitMq.Tests.csproj" />
   </Folder>
 </Solution>

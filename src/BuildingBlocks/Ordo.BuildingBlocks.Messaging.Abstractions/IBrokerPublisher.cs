@@ -2,6 +2,5 @@ namespace Ordo.BuildingBlocks.Messaging.Abstractions;
 
 public interface IBrokerPublisher
 {
-    Task PublishAsync<TMessage>(TMessage message, CancellationToken cancellationToken)
-        where TMessage : class;
+    Task PublishAsync(OutboundMessage message, CancellationToken cancellationToken);
 }
