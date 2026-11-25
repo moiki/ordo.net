@@ -78,7 +78,7 @@ ordo/
 ├── src/
 │   ├── BuildingBlocks/          # technical infrastructure only, NO business logic
 │   │   ├── Ordo.BuildingBlocks.Messaging.Abstractions/
-│   │   ├── Ordo.BuildingBlocks.Messaging.RabbitMq/    (Phase 1 — not yet created)
+│   │   ├── Ordo.BuildingBlocks.Messaging.RabbitMq/    (Phase 1)
 │   │   └── Ordo.BuildingBlocks.Messaging.EfCore/      (Phase 2 — not yet created; outbox + inbox)
 │   ├── Contracts/
 │   │   └── Ordo.Contracts/      # integration events only

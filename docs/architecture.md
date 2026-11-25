@@ -113,7 +113,7 @@ src/Orders/
 | `*.Api` | its own `*.Application`, its own `*.Infrastructure`, `Ordo.Contracts`, `BuildingBlocks.*` |
 | `Ordo.Contracts` | nothing (BCL only) |
 | `BuildingBlocks.Messaging.Abstractions` | `Ordo.Contracts` only (it needs `IIntegrationEvent`, which lives in `Ordo.Contracts`) |
-| `BuildingBlocks.Messaging.RabbitMq` (Phase 1) | `Messaging.Abstractions` — not yet created |
+| `BuildingBlocks.Messaging.RabbitMq` (Phase 1) | `Messaging.Abstractions` |
 | `BuildingBlocks.Messaging.EfCore` (Phase 2) | `Messaging.Abstractions` — not yet created |
 | Test projects | the projects they test, plus test libraries |
 
