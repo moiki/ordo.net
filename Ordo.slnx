@@ -23,5 +23,6 @@
     <Project Path="tests/Ordo.ArchitectureTests/Ordo.ArchitectureTests.csproj" />
     <Project Path="tests/Ordo.Messaging.Abstractions.Tests/Ordo.Messaging.Abstractions.Tests.csproj" />
     <Project Path="tests/Ordo.Messaging.RabbitMq.Tests/Ordo.Messaging.RabbitMq.Tests.csproj" />
+    <Project Path="tests/Ordo.Orders.Tests/Ordo.Orders.Tests.csproj" />
   </Folder>
 </Solution>

@@ -46,5 +46,8 @@ docker compose -f deploy/docker-compose.yml down -v
 | Ordo.Inventory.Application | Application | [README](src/Inventory/Ordo.Inventory.Application/README.md) |
 | Ordo.Inventory.Infrastructure | Infrastructure | [README](src/Inventory/Ordo.Inventory.Infrastructure/README.md) |
 | Ordo.Inventory.Api | Api | [README](src/Inventory/Ordo.Inventory.Api/README.md) |
+| Ordo.Messaging.Abstractions.Tests | Tests | [README](tests/Ordo.Messaging.Abstractions.Tests/README.md) |
+| Ordo.Messaging.RabbitMq.Tests | Tests | [README](tests/Ordo.Messaging.RabbitMq.Tests/README.md) |
+| Ordo.Orders.Tests | Tests | [README](tests/Ordo.Orders.Tests/README.md) |
 | Ordo.ArchitectureTests | Tests | [README](tests/Ordo.ArchitectureTests/README.md) |
 
