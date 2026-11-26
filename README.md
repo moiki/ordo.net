@@ -26,6 +26,7 @@ docker compose -f deploy/docker-compose.yml down -v
 
 `docs/` is the detailed source of truth; `AGENTS.md` §0 wins on conflict.
 
+- `docs/NAVIGATION.md` — mapa de la solución y el porqué de cada proyecto (empieza aquí)
 - `docs/roadmap.md`
 - `docs/architecture.md`
 - `docs/messaging.md`
